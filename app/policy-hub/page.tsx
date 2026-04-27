@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import type { LucideIcon } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRight, Search, Filter } from 'lucide-react'
@@ -86,7 +87,7 @@ export default async function PolicyHubPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {displayIssues.map((issue) => {
               const color = colorMap[('color' in issue ? issue.color : undefined) || 'blue']
-              const IssueIcon = 'icon' in issue ? issue.icon : Globe
+              const IssueIcon = ('icon' in issue ? issue.icon : Globe) as LucideIcon
               const href = `policy-hub/${'slug' in issue ? issue.slug.current : '#'}`
               const keyFacts = 'keyFacts' in issue ? issue.keyFacts : undefined
 

@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import type { LucideIcon } from 'lucide-react'
 import { ArrowRight, Shield, Heart, Globe, Leaf, BookOpen, Users, Droplets, Scale } from 'lucide-react'
 import type { PolicyIssue } from '@/lib/types'
 import { urlFor } from '@/lib/sanity'
@@ -51,11 +52,11 @@ export default function IssueSelector({ issues }: IssueSelectorProps) {
           {displayIssues.slice(0, 6).map((issue) => {
             const color = colorMap[('color' in issue ? issue.color : undefined) || 'blue']
             const issueHref = 'slug' in issue && issue.slug ? `/policy-hub/${issue.slug.current}` : ('href' in issue ? issue.href : '/policy-hub')
-            const IssueIcon = 'icon' in issue ? issue.icon : Globe
+            const IssueIcon = ('icon' in issue ? issue.icon : Globe) as LucideIcon
 
             return (
               <Link
-                key={issue.id || ('_id' in issue ? issue._id : Math.random())}
+                key={('_id' in issue ? issue._id : ('id' in issue ? (issue as { id: string }).id : String(Math.random())))}
                 href={issueHref as string}
                 className={`group relative bg-gradient-to-br ${color.bg} border ${color.border} rounded-2xl p-6 hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1`}
                 aria-label={`Explore issue: ${issue.title}`}

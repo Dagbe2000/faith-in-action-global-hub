@@ -78,7 +78,6 @@ export default function BlogFeed({ posts = [] }: BlogFeedProps) {
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12">
           <SectionHeader
             eyebrow="News & Insights"
-            id="blog-heading"
             title="Voices from the Global Movement"
             description="Analysis, stories, and updates from faith advocates around the world."
           />
